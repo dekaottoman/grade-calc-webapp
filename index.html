@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap" rel="stylesheet">
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    </head>
+    <body>
+        <nav class="navigation">
+            <a href="#" class="nav-btn">Grade Calculator</a>
+            <button onclick="swal({title:'Coming soon...', button:'KK'})" class="nav-btn">GPA Calculator</button>
+            
+            <button onclick="swal({ title: 'About', text: '&nbsp;&nbsp;This website was made as a hobby project to help my fellow students calculate their grades without requiring my assistance.', icon: 'info', button: 'KK', });" class="i-btn"><img src="info.svg"></button>
+        </nav>
+        
+        <div class="container">
+            <table class="calculator">
+                <thead>
+                    <tr>
+                        <th style="width: 50%;">Percentage</th>
+                        <th style="width: 50%;">Points</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="number" value="0" id="perc1"></td>
+                        <td><input type="number" value="0" id="point1"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="number" value="0" id="perc2"></td>
+                        <td><input type="number" value="0" id="point2"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="number" value="0" id="perc3"></td>
+                        <td><input type="number" value="0" id="point3"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="number" value="0" id="perc4"></td>
+                        <td><input type="number" value="0" id="point4"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="number" value="0" id="perc5"></td>
+                        <td><input type="number" value="0" id="point5"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><button class="calc-btn" onclick="display_sum()">Calculate Your Grade</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        
+            <div id="display">
+                <h1>waiting input</h1>
+            </div>
+        </div>
+
+    </body>
+    <script type="text/javascript">
+    
+    function calc_var1(){
+        var percentage = document.getElementById("perc1").value;
+        var points = document.getElementById("point1").value;
+        var variable = (points/100) * percentage;
+        return variable;
+    }
+
+    function calc_var2(){
+        var percentage = document.getElementById("perc2").value;
+        var points = document.getElementById("point2").value;
+        var variable = (points/100) * percentage;
+        return variable;
+    }
+
+    function calc_var3(){
+        var percentage = document.getElementById("perc3").value;
+        var points = document.getElementById("point3").value;
+        var variable = (points/100) * percentage;
+        return variable;
+    }
+
+    function calc_var4(){
+        var percentage = document.getElementById("perc4").value;
+        var points = document.getElementById("point4").value;
+        var variable = (points/100) * percentage;
+        return variable;
+    }
+
+    function calc_var5(){
+        var percentage = document.getElementById("perc5").value;
+        var points = document.getElementById("point5").value;
+        var variable = (points/100) * percentage;
+        return variable;
+    }
+
+    function calc_sum(){
+        var sum = calc_var5() + calc_var4() + calc_var3() + calc_var2() + calc_var1();
+        return sum;
+    }
+
+    function display_sum(){
+        document.getElementById("display").innerHTML = "<h1>"+ calc_sum()+"</h1>";
+    } 
+
+
+    </script>
+</html>
