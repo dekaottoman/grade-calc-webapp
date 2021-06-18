@@ -100,7 +100,8 @@
     }
 
     function display_sum(){
-        document.getElementById("display").innerHTML = "<h1>"+ calc_sum()+"</h1>";
+        var sum = Number((calc_sum()).toFixed(2));
+        document.getElementById("display").innerHTML = "<h1>"+ sum +"</h1>";
     } 
 
 
