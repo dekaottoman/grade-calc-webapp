@@ -52,7 +52,9 @@
             </table>
         
             <div id="display">
-                <h1>waiting input</h1>
+                <h1 class="display-header">Coming soon</h1>
+                <p class="display-text">Waiting Input</p>
+                <h2 class="display-header">Good luck in your exams</h2>
             </div>
         </div>
 
@@ -99,24 +101,18 @@
         return sum;
     }
 
-    function check_percentage(){
-        var total_percentage = document.getElementById("perc5").value + document.getElementById("perc4").value + document.getElementById("perc3").value + document.getElementById("perc2").value + document.getElementById("perc1").value;
-        var perc_true = false;
-        if(total_percentage == 100){
-            perc_true = true;
-        }
-        return perc_true;
+    function message(){
+        var mssg = 
+        "<h1 class='display-header'>" + "Coming soon" + "<p class='display-num'>" +
+        calc_sum().toFixed(2) + "/100" + "</p>" +
+        "<h2 class='display-header'>Good luck in your exams</h2>";
+        
+        
+        return mssg;
     }
         
-    function get_message(){
-        if(check_percentage() == false){
-            return "Percentage Error.<br>Please make sure your percentages total at 100."
-        }
-        else{ return Number((calc_sum()).toFixed(2));}
-    }
-
     function display_sum(){
-        document.getElementById("display").innerHTML = "<h1>"+ get_message() + "</h1>";
+        document.getElementById("display").innerHTML = "<h1>"+ message() + "</h1>";
     } 
 
 
