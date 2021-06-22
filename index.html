@@ -56,9 +56,8 @@
                 <p class="display-text">Waiting Input</p>
                 <h2 class="display-header">Good luck in your exams</h2>
             </div>
-        </div>
-        
-        <table class="letter-range">
+            
+            <table class="letter-range">
             <tr><th style="font-size: medium;" colspan="6">Grade Ranges</th></tr>
             <tr>
                 <th>A&nbsp;</th><td><input type="number" id="A" value="92"></td>
@@ -83,6 +82,9 @@
             </tr>
             
         </table>
+        </div>
+        
+        
 
     </body>
     <script type="text/javascript">
@@ -93,28 +95,28 @@
         var variable = (points/100) * percentage;
         return variable;
     }
-
+    
     function calc_var2(){
         var percentage = document.getElementById("perc2").value;
         var points = document.getElementById("point2").value;
         var variable = (points/100) * percentage;
         return variable;
     }
-
+    
     function calc_var3(){
         var percentage = document.getElementById("perc3").value;
         var points = document.getElementById("point3").value;
         var variable = (points/100) * percentage;
         return variable;
     }
-
+    
     function calc_var4(){
         var percentage = document.getElementById("perc4").value;
         var points = document.getElementById("point4").value;
         var variable = (points/100) * percentage;
         return variable;
     }
-
+    
     function calc_var5(){
         var percentage = document.getElementById("perc5").value;
         var points = document.getElementById("point5").value;
@@ -163,18 +165,103 @@
         }
         else{ return "F"; }
     }
+    
+    function check_grade_range(){
+        if(
+            document.getElementById("A").value > document.getElementById("A-").value && 
+            document.getElementById("A-").value > document.getElementById("B+").value){
+            if(
+                document.getElementById("B+").value > document.getElementById("B").value &&
+                document.getElementById("B").value > document.getElementById("B-").value){
+                if(
+                    document.getElementById("B-").value > document.getElementById("C").value &&
+                    document.getElementById("C").value > document.getElementById("C-").value){
+                    if(
+                        document.getElementById("C-").value > document.getElementById("D+").value &&
+                        document.getElementById("D+").value > document.getElementById("D").value){
+                        if(
+                            document.getElementById("D").value > document.getElementById("D-").value){
+                            return true;
+                        }else{return false;}
+                    }else{return false;}
+                }else{return false;}
+            }else{return false;}
+        }else{return false;}
         
-    function message(){
-        var mssg = 
-        "<h1 class='display-header'>" + get_grade() + "<p class='display-num'>" +
-        calc_sum().toFixed(2) + "/100" + "</p>" +
-        "<h2 class='display-header'>Good luck in your exams</h2>";
-        
-        return mssg;
+    }
+    
+    function check_point_range(){
+        if(
+            document.getElementById("point1").value >= 0 &&
+            document.getElementById("point1").value <= 100){
+            if(
+                document.getElementById("point2").value >= 0 &&
+                document.getElementById("point2").value <= 100){
+                if(
+                    document.getElementById("point3").value >= 0 &&
+                    document.getElementById("point3").value <= 100){
+                    if(
+                        document.getElementById("point4").value >= 0 &&
+                        document.getElementById("point4").value <= 100){
+                        if(
+                            document.getElementById("point5").value >= 0 &&
+                            document.getElementById("point5").value <= 100){
+                            return true;
+                        }else{return false;}
+                    }else{return false;}
+                }else{return false;}
+            }else{return false;}
+        }else{return false;}
     }
         
+    function check_percentage_range(){
+        if(
+            document.getElementById("perc1").value >= 0 &&
+            document.getElementById("perc1").value <= 100){
+            if(
+                document.getElementById("perc2").value >= 0 &&
+                document.getElementById("perc2").value <= 100){
+                if(
+                    document.getElementById("perc3").value >= 0 &&
+                    document.getElementById("perc3").value <= 100){
+                    if(
+                        document.getElementById("perc4").value >= 0 &&
+                        document.getElementById("perc4").value <= 100){
+                        if(
+                            document.getElementById("perc5").value >= 0 &&
+                            document.getElementById("perc5").value <= 100){
+                            return true;
+                        }else{return false;}
+                    }else{return false;}
+                }else{return false;}
+            }else{return false;}
+        }else{return false;}
+    }
+        
+    function message(){ 
+        //Grade Range Check
+        if(check_grade_range() == false){
+            var top = "Grade Range Error";
+        }
+        else{var top = get_grade();}
+        //Percentage Range Check
+        if(check_percentage_range() == false){
+            var mid = "<p class='display-text'>Percentage Range <br> Error</p>"
+        }
+        else if(check_point_range() == false){
+            var mid = "<p class='display-text'>Point Range <br> Error</p>"
+        }
+        else{var mid = "<p class='display-num'>" + calc_sum().toFixed(2) + "/100" + "</p>"}
+        
+        //Message generation
+        var mssg = 
+        "<h1 class='display-header'>" + top + "</h1>" + mid +
+        "<h2 class='display-header'>Good luck in your exams</h2>";
+        return mssg;
+      }
+        
     function display_summary(){
-        document.getElementById("display").innerHTML = "<h1>"+ message() + "</h1>";
+        document.getElementById("display").innerHTML = message();
     } 
 
 
