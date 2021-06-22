@@ -46,17 +46,43 @@
                         <td><input type="number" value="0" id="point5"></td>
                     </tr>
                     <tr>
-                        <td colspan="2"><button class="calc-btn" onclick="display_sum()">Calculate Your Grade</button></td>
+                        <td colspan="2"><button class="calc-btn" onclick="display_summary()">Calculate Your Grade</button></td>
                     </tr>
                 </tbody>
             </table>
-        
+            
             <div id="display">
                 <h1 class="display-header">Coming soon</h1>
                 <p class="display-text">Waiting Input</p>
                 <h2 class="display-header">Good luck in your exams</h2>
             </div>
         </div>
+        
+        <table class="letter-range">
+            <tr><th style="font-size: medium;" colspan="6">Grade Ranges</th></tr>
+            <tr>
+                <th>A&nbsp;</th><td><input type="number" id="A" value="92"></td>
+                <th>A-</th><td><input type="number" id="A-" value="85"></td>
+                <th>B+</th><td><input type="number" id="B+" value="78"></td>
+                
+            </tr>
+            <tr>
+                <th>B&nbsp;</th><td><input type="number" id="B" value="71"></td>
+                <th>B-</th><td><input type="number" id="B-" value="64"></td>
+                <th>C+</th><td><input type="number" id="C+" value="57"></td>
+            </tr>
+            <tr>
+                <th>C&nbsp;</th><td><input type="number" id="C" value="50"></td>
+                <th>C-</th><td><input type="number" id="C-" value="43"></td>
+                <th>D+</th><td><input type="number" id="D+" value="36"></td>
+            </tr>
+            <tr>
+                <th>D&nbsp;</th><td><input type="number" id="D" value="29"></td>
+                <th>D-</th><td><input type="number" id="D-" value="22"></td>
+                <th>F</th><th style="font-size: medium;">0</th>
+            </tr>
+            
+        </table>
 
     </body>
     <script type="text/javascript">
@@ -95,23 +121,59 @@
         var variable = (points/100) * percentage;
         return variable;
     }
-
+    
     function calc_sum(){
         var sum = calc_var5() + calc_var4() + calc_var3() + calc_var2() + calc_var1();
         return sum;
     }
-
+    
+    function get_grade(){
+        if(calc_sum() >= document.getElementById("A").value){
+            return "A";
+        }
+        else if(calc_sum() >= document.getElementById("A-").value){
+            return "A-";
+        }
+        else if(calc_sum() >= document.getElementById("B+").value){
+            return "B+";
+        }
+        else if(calc_sum() >= document.getElementById("B").value){
+            return "B";
+        }
+        else if(calc_sum() >= document.getElementById("B-").value){
+            return "B-";
+        }
+        else if(calc_sum() >= document.getElementById("C+").value){//Ignored at equals
+            return "C+";
+        }
+        else if(calc_sum() >= document.getElementById("C").value){
+            return "C";
+        }
+        else if(calc_sum() >= document.getElementById("C-").value){
+            return "C-";
+        }
+        else if(calc_sum() >= document.getElementById("D+").value){
+            return "D+";
+        }
+        else if(calc_sum() >= document.getElementById("D").value){//Ignored at equals
+            return "D";
+        }
+        else if(calc_sum() >= document.getElementById("D-").value){
+            return "D-";
+        }
+        else{ return "F"; }
+    }
+        
     function message(){
         var mssg = 
-        "<h1 class='display-header'>" + "Coming soon" + "<p class='display-num'>" +
+        "<h1 class='display-header'>" + get_grade() + "<p class='display-num'>" +
         calc_sum().toFixed(2) + "/100" + "</p>" +
         "<h2 class='display-header'>Good luck in your exams</h2>";
-        
         
         return mssg;
     }
         
-    function display_sum(){
+    function display_summary(){
         document.getElementById("display").innerHTML = "<h1>"+ message() + "</h1>";
     } 
 
