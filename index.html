@@ -10,7 +10,7 @@
     </head>
     <body>
         <nav class="navigation">
-            <a href="#" class="nav-btn">Grade Calculator</a>
+            <button onclick="how_to()" class="nav-btn">How to Use ?</button>
             <button onclick="swal({title:'Coming soon...', button:'KK'})" class="nav-btn">GPA Calculator</button>
             
             <button onclick="swal({ title: 'About', text: '&nbsp;&nbsp;This website was made as a hobby project to help my fellow students calculate their grades without requiring my assistance.', icon: 'info', button: 'KK', });" class="i-btn"><img src="info.svg"></button>
@@ -52,7 +52,7 @@
             </table>
             
             <div id="display">
-                <h1 class="display-header">Coming soon</h1>
+                <h1 class="display-header">Letter</h1>
                 <p class="display-text">Waiting Input</p>
                 <h2 class="display-header">Good luck in your exams</h2>
             </div>
@@ -89,6 +89,22 @@
     </body>
     <script type="text/javascript">
     
+    function how_to(){
+        swal("How to Use?","To calculate your result from a course, you need to enter your scores and pertages of each respective assesment item in the Points&Percentages table located, at the top left or top for mobile users.", "score_table.png" ,{
+            buttons: {next: "Next",},})
+            .then(() => {
+                swal("Letter Grades","To calculate your letter grades, enter the bottom values of each grade at the Grade Range table located, at the bottom left or bottom for mobile users.", "grade_range.png" ,{
+                buttons: {next: "Next",},})
+                    .then(() => {
+                    swal("Output","The output of your calculation will be located at the right or middle part for mobile users. There you can see your score and letter grade.", "output.png" ,{
+                    buttons: {next: "Next",},})
+                        .then(()=>{
+                    swal("Error Types","If you enter a negative value ro a value above 100 in any input field the website will give you a range error (Range should be 0-100). Also for grades they need to be in order as well (Ex: B=90, A=80 gives an error because B cannot be greater or equal to A.)")   
+                });
+            });
+        });
+    }
+        
     function calc_var1(){
         var percentage = document.getElementById("perc1").value;
         var points = document.getElementById("point1").value;
@@ -237,7 +253,21 @@
             }else{return false;}
         }else{return false;}
     }
+    
+    /*
+    function check_total_percentage(){
+        var percentage1 = document.getElementById("perc1").value;
+        var percentage2 = document.getElementById("perc2").value;
+        var percentage3 = document.getElementById("perc3").value;
+        var percentage4 = document.getElementById("perc4").value;
+        var percentage5 = document.getElementById("perc5").value;
+        var total = percentage1 + percentage2 + percentage3 + percentage4 + percentage5;
         
+        if(total == 100){ return true; }
+        else { return false; }
+    }
+    */
+    
     function message(){ 
         //Grade Range Check
         if(check_grade_range() == false){
@@ -245,13 +275,20 @@
         }
         else{var top = get_grade();}
         //Percentage Range Check
-        if(check_percentage_range() == false){
+        
+        if(/*check_total_percentage() == false*/ false){
+            var mid = "<p class='display-text'>Total Percentage<br> Error</p>"
+        }
+        else{
+            if(check_percentage_range() == false){
             var mid = "<p class='display-text'>Percentage Range <br> Error</p>"
+            }
+            else if(check_point_range() == false){
+                var mid = "<p class='display-text'>Point Range <br> Error</p>"
+            }
+            else{var mid = "<p class='display-num'>" + calc_sum().toFixed(2) + "/100" + "</p>"}
         }
-        else if(check_point_range() == false){
-            var mid = "<p class='display-text'>Point Range <br> Error</p>"
-        }
-        else{var mid = "<p class='display-num'>" + calc_sum().toFixed(2) + "/100" + "</p>"}
+        
         
         //Message generation
         var mssg = 
@@ -263,7 +300,6 @@
     function display_summary(){
         document.getElementById("display").innerHTML = message();
     } 
-
 
     </script>
 </html>
