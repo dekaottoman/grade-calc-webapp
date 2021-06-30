@@ -185,3 +185,19 @@ function check_grade_order(){
     }
     return order;
 }
+
+function how_to(){
+    swal("How to Use?","To calculate your result from a course, you need to enter your scores and pertages of each respective assesment item in the Assesment Items. To change the count of assesment items use the plus and minus buttons.", "score_table.png" ,{
+        buttons: {next: "Next",},})
+        .then(() => {
+            swal("Letter Grades","To calculate your letter grades, enter the bottom values of each grade at the Grade Range table located at the bottom.", "grade_range.png" ,{
+            buttons: {next: "Next",},})
+                .then(() => {
+                swal("Output","The output of your calculation will be located at the bottom of the assesment table. There you can see your score and letter grade.", "output.png" ,{
+                buttons: {next: "Next",},})
+                    .then(()=>{
+                swal("Error Types","If you enter a negative value 0r a value above 100 in any input field the website will give you a range error (Range should be 0-100). Also for grades they need to be in order as well (Ex: B=90, A=80 gives an error because B cannot be greater or equal to A. Lastly the total of the percentages you enter needs to be 100. Otherwise it will give a total percentage error. )", "error.png")
+            });
+        });
+    });
+}

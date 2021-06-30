@@ -1,0 +1,21 @@
+body{
+    padding-top: 100px;
+}
+
+.topbar{
+    height: 60px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    background-color: #353b48;;
+}
+
+.topbar button{
+    margin: 15px;
+    padding: 5px 10px;
+    font-size: 15px;
+    font-family: 'Source Sans Pro', sans-serif;
+    text-align: center;
+    border: none;
+    color: #2f3640;
+}

@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Online Grade Calculator | dekaottoman</title>
         <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="navigation.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
@@ -12,6 +13,35 @@
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     </head>
     <body onload="display_input_body('input-body')">
+        <nav class="topbar">
+            <button onclick="how_to()">How To Use ?</button>
+        </nav>
+
+        <div class="assesment-items">
+            <table>
+                <thead>
+                    
+                    <tr><th colspan="2">Assesment Items</th></tr>
+                    <tr><th>Effect%</th><th>Score%</th></tr>
+                </thead>
+                <tbody id="input-body">
+                    
+                </tbody>
+                <tbody>
+                    <tr>
+                        <td colspan="2"><button onclick="display_score('display','grade-cell')">Calculate</button></td>
+                    </tr>
+                    <tr>
+                        <td><button onclick="increase_assesment_count('input-body')"><i class="fas fa-plus"></i></button></td>
+                        <td><button onclick="decrease_assesment_count('input-body')"><i class="fas fa-minus"></i></button></td>
+                    </tr>
+                    
+                    <tr><th id="display" colspan="2"><h1>Your Score</h1></th></tr>
+                    <tr><th><h2>Your Grade is :</h2></th><th id="grade-cell">Waiting</th></tr>
+                    <tr><th colspan="2"><h2>Good luck in your exams!!</h2></th></tr>
+                </tbody>
+            </table>
+        </div>
         
         <div class="letter">
             <table>
@@ -47,32 +77,6 @@
                 </tbody>
             </table>
         </div>
-
-        <div class="assesment-items">
-            <table>
-                <thead>
-                    
-                    <tr><th colspan="2">Assesment Items</th></tr>
-                    <tr><th>Effect%</th><th>Score%</th></tr>
-                </thead>
-                <tbody id="input-body">
-                    
-                </tbody>
-                <tbody>
-                    <tr>
-                        <td colspan="2"><button onclick="display_score('display','grade-cell')">Calculate</button></td>
-                    </tr>
-                    <tr>
-                        <td><button onclick="increase_assesment_count('input-body')"><i class="fas fa-plus"></i></button></td>
-                        <td><button onclick="decrease_assesment_count('input-body')"><i class="fas fa-minus"></i></button></td>
-                    </tr>
-                    
-                    <tr><th id="display" colspan="2"><h1>Your Score</h1></th></tr>
-                    <tr><th><h2>Your Grade is :</h2></th><th id="grade-cell">Waiting</th></tr>
-                </tbody>
-            </table>
-        </div>
-
     </body>
     <script type="text/javascript" src="script.js"></script>
 </html>
