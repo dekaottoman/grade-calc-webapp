@@ -25,7 +25,7 @@ function display_score(display_id1,display_id2){
     var code = error_check();
     
     switch(code){
-        case 0: document.getElementById(display_id1).innerHTML = "<h1>" + calc_total_score().toFixed(2) + "</h1>"; document.getElementById(display_id2).innerHTML = "<h2>" + error_check() + "</h2>";
+        case 0: document.getElementById(display_id1).innerHTML = "<h1>" + calc_total_score().toFixed(2) + "</h1>"; document.getElementById(display_id2).innerHTML = "<h2>" + get_grade() + "</h2>";
             break;
         case 1: document.getElementById(display_id1).innerHTML = "<h1>Percentage Range Error</h1>";
             break;
