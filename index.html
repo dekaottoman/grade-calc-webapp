@@ -3,303 +3,76 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Online Grade Calculator | dekaottoman</title>
         <link rel="stylesheet" href="style.css">
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"> 
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     </head>
-    <body>
-        <nav class="navigation">
-            <button onclick="how_to()" class="nav-btn">How to Use ?</button>
-            <button onclick="swal({title:'Coming soon...', button:'KK'})" class="nav-btn">GPA Calculator</button>
-            
-            <button onclick="swal({ title: 'About', text: '&nbsp;&nbsp;This website was made as a hobby project to help my fellow students calculate their grades without requiring my assistance.', icon: 'info', button: 'KK', });" class="i-btn"><img src="info.svg"></button>
-        </nav>
+    <body onload="display_input_body('input-body')">
         
-        <div class="container">
-            <table class="calculator">
-                <thead>
-                    <tr>
-                        <th style="width: 50%;">Percentage</th>
-                        <th style="width: 50%;">Points</th>
-                    </tr>
-                </thead>
+        <div class="letter">
+            <table>
                 <tbody>
                     <tr>
-                        <td><input type="number" value="0" id="perc1"></td>
-                        <td><input type="number" value="0" id="point1"></td>
+                        <th>A</th>
+                        <th>A-</th>
+                        <th>B+</th>
+                        <th>B</th>
+                        <th>B-</th>
+                        <th>C+</th>
+                        <th>C</th>
+                        <th>C-</th>
+                        <th>D+</th>
+                        <th>D</th>
+                        <th>D-</th>
+                        <th>F</th>
                     </tr>
                     <tr>
-                        <td><input type="number" value="0" id="perc2"></td>
-                        <td><input type="number" value="0" id="point2"></td>
-                    </tr>
-                    <tr>
-                        <td><input type="number" value="0" id="perc3"></td>
-                        <td><input type="number" value="0" id="point3"></td>
-                    </tr>
-                    <tr>
-                        <td><input type="number" value="0" id="perc4"></td>
-                        <td><input type="number" value="0" id="point4"></td>
-                    </tr>
-                    <tr>
-                        <td><input type="number" value="0" id="perc5"></td>
-                        <td><input type="number" value="0" id="point5"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"><button class="calc-btn" onclick="display_summary()">Calculate Your Grade</button></td>
+                        <td><input type="number" id="G0" value="92"></td>
+                        <td><input type="number" id="G1" value="85"></td>
+                        <td><input type="number" id="G2" value="78"></td>
+                        <td><input type="number" id="G3" value="71"></td>
+                        <td><input type="number" id="G4" value="64"></td>
+                        <td><input type="number" id="G5" value="57"></td>
+                        <td><input type="number" id="G6" value="50"></td>
+                        <td><input type="number" id="G7" value="43"></td>
+                        <td><input type="number" id="G8" value="36"></td>
+                        <td><input type="number" id="G9" value="29"></td>
+                        <td><input type="number" id="G10" value="22"></td>
+                        <td><input type="number" id="G11" value="0" disabled></td>
                     </tr>
                 </tbody>
             </table>
-            
-            <div id="display">
-                <h1 class="display-header">Letter</h1>
-                <p class="display-text">Waiting Input</p>
-                <h2 class="display-header">Good luck in your exams</h2>
-            </div>
-            
-            <table class="letter-range">
-            <tr><th style="font-size: medium;" colspan="6">Grade Ranges</th></tr>
-            <tr>
-                <th>A&nbsp;</th><td><input type="number" id="A" value="92"></td>
-                <th>A-</th><td><input type="number" id="A-" value="85"></td>
-                <th>B+</th><td><input type="number" id="B+" value="78"></td>
-                
-            </tr>
-            <tr>
-                <th>B&nbsp;</th><td><input type="number" id="B" value="71"></td>
-                <th>B-</th><td><input type="number" id="B-" value="64"></td>
-                <th>C+</th><td><input type="number" id="C+" value="57"></td>
-            </tr>
-            <tr>
-                <th>C&nbsp;</th><td><input type="number" id="C" value="50"></td>
-                <th>C-</th><td><input type="number" id="C-" value="43"></td>
-                <th>D+</th><td><input type="number" id="D+" value="36"></td>
-            </tr>
-            <tr>
-                <th>D&nbsp;</th><td><input type="number" id="D" value="29"></td>
-                <th>D-</th><td><input type="number" id="D-" value="22"></td>
-                <th>F</th><th style="font-size: medium;">0</th>
-            </tr>
-            
-        </table>
         </div>
-        
-        
+
+        <div class="assesment-items">
+            <table>
+                <thead>
+                    
+                    <tr><th colspan="2">Assesment Items</th></tr>
+                    <tr><th>Effect%</th><th>Score%</th></tr>
+                </thead>
+                <tbody id="input-body">
+                    
+                </tbody>
+                <tbody>
+                    <tr>
+                        <td colspan="2"><button onclick="display_score('display','grade-cell')">Calculate</button></td>
+                    </tr>
+                    <tr>
+                        <td><button onclick="increase_assesment_count('input-body')"><i class="fas fa-plus"></i></button></td>
+                        <td><button onclick="decrease_assesment_count('input-body')"><i class="fas fa-minus"></i></button></td>
+                    </tr>
+                    
+                    <tr><th id="display" colspan="2"><h1>Your Score</h1></th></tr>
+                    <tr><th><h2>Your Grade is :</h2></th><th id="grade-cell">Waiting</th></tr>
+                </tbody>
+            </table>
+        </div>
 
     </body>
-    <script type="text/javascript">
-    
-    function how_to(){
-        swal("How to Use?","To calculate your result from a course, you need to enter your scores and pertages of each respective assesment item in the Points&Percentages table located, at the top left or top for mobile users.", "score_table.png" ,{
-            buttons: {next: "Next",},})
-            .then(() => {
-                swal("Letter Grades","To calculate your letter grades, enter the bottom values of each grade at the Grade Range table located, at the bottom left or bottom for mobile users.", "grade_range.png" ,{
-                buttons: {next: "Next",},})
-                    .then(() => {
-                    swal("Output","The output of your calculation will be located at the right or middle part for mobile users. There you can see your score and letter grade.", "output.png" ,{
-                    buttons: {next: "Next",},})
-                        .then(()=>{
-                    swal("Error Types","If you enter a negative value ro a value above 100 in any input field the website will give you a range error (Range should be 0-100). Also for grades they need to be in order as well (Ex: B=90, A=80 gives an error because B cannot be greater or equal to A.)")   
-                });
-            });
-        });
-    }
-        
-    function calc_var1(){
-        var percentage = document.getElementById("perc1").value;
-        var points = document.getElementById("point1").value;
-        var variable = (points/100) * percentage;
-        return variable;
-    }
-    
-    function calc_var2(){
-        var percentage = document.getElementById("perc2").value;
-        var points = document.getElementById("point2").value;
-        var variable = (points/100) * percentage;
-        return variable;
-    }
-    
-    function calc_var3(){
-        var percentage = document.getElementById("perc3").value;
-        var points = document.getElementById("point3").value;
-        var variable = (points/100) * percentage;
-        return variable;
-    }
-    
-    function calc_var4(){
-        var percentage = document.getElementById("perc4").value;
-        var points = document.getElementById("point4").value;
-        var variable = (points/100) * percentage;
-        return variable;
-    }
-    
-    function calc_var5(){
-        var percentage = document.getElementById("perc5").value;
-        var points = document.getElementById("point5").value;
-        var variable = (points/100) * percentage;
-        return variable;
-    }
-    
-    function calc_sum(){
-        var sum = calc_var5() + calc_var4() + calc_var3() + calc_var2() + calc_var1();
-        return sum;
-    }
-    
-    function get_grade(){
-        if(calc_sum() >= document.getElementById("A").value){
-            return "A";
-        }
-        else if(calc_sum() >= document.getElementById("A-").value){
-            return "A-";
-        }
-        else if(calc_sum() >= document.getElementById("B+").value){
-            return "B+";
-        }
-        else if(calc_sum() >= document.getElementById("B").value){
-            return "B";
-        }
-        else if(calc_sum() >= document.getElementById("B-").value){
-            return "B-";
-        }
-        else if(calc_sum() >= document.getElementById("C+").value){//Ignored at equals
-            return "C+";
-        }
-        else if(calc_sum() >= document.getElementById("C").value){
-            return "C";
-        }
-        else if(calc_sum() >= document.getElementById("C-").value){
-            return "C-";
-        }
-        else if(calc_sum() >= document.getElementById("D+").value){
-            return "D+";
-        }
-        else if(calc_sum() >= document.getElementById("D").value){//Ignored at equals
-            return "D";
-        }
-        else if(calc_sum() >= document.getElementById("D-").value){
-            return "D-";
-        }
-        else{ return "F"; }
-    }
-    
-    function check_grade_range(){
-        if(
-            document.getElementById("A").value > document.getElementById("A-").value && 
-            document.getElementById("A-").value > document.getElementById("B+").value){
-            if(
-                document.getElementById("B+").value > document.getElementById("B").value &&
-                document.getElementById("B").value > document.getElementById("B-").value){
-                if(
-                    document.getElementById("B-").value > document.getElementById("C").value &&
-                    document.getElementById("C").value > document.getElementById("C-").value){
-                    if(
-                        document.getElementById("C-").value > document.getElementById("D+").value &&
-                        document.getElementById("D+").value > document.getElementById("D").value){
-                        if(
-                            document.getElementById("D").value > document.getElementById("D-").value){
-                            return true;
-                        }else{return false;}
-                    }else{return false;}
-                }else{return false;}
-            }else{return false;}
-        }else{return false;}
-        
-    }
-    
-    function check_point_range(){
-        if(
-            document.getElementById("point1").value >= 0 &&
-            document.getElementById("point1").value <= 100){
-            if(
-                document.getElementById("point2").value >= 0 &&
-                document.getElementById("point2").value <= 100){
-                if(
-                    document.getElementById("point3").value >= 0 &&
-                    document.getElementById("point3").value <= 100){
-                    if(
-                        document.getElementById("point4").value >= 0 &&
-                        document.getElementById("point4").value <= 100){
-                        if(
-                            document.getElementById("point5").value >= 0 &&
-                            document.getElementById("point5").value <= 100){
-                            return true;
-                        }else{return false;}
-                    }else{return false;}
-                }else{return false;}
-            }else{return false;}
-        }else{return false;}
-    }
-        
-    function check_percentage_range(){
-        if(
-            document.getElementById("perc1").value >= 0 &&
-            document.getElementById("perc1").value <= 100){
-            if(
-                document.getElementById("perc2").value >= 0 &&
-                document.getElementById("perc2").value <= 100){
-                if(
-                    document.getElementById("perc3").value >= 0 &&
-                    document.getElementById("perc3").value <= 100){
-                    if(
-                        document.getElementById("perc4").value >= 0 &&
-                        document.getElementById("perc4").value <= 100){
-                        if(
-                            document.getElementById("perc5").value >= 0 &&
-                            document.getElementById("perc5").value <= 100){
-                            return true;
-                        }else{return false;}
-                    }else{return false;}
-                }else{return false;}
-            }else{return false;}
-        }else{return false;}
-    }
-    
-    /*
-    function check_total_percentage(){
-        var percentage1 = document.getElementById("perc1").value;
-        var percentage2 = document.getElementById("perc2").value;
-        var percentage3 = document.getElementById("perc3").value;
-        var percentage4 = document.getElementById("perc4").value;
-        var percentage5 = document.getElementById("perc5").value;
-        var total = percentage1 + percentage2 + percentage3 + percentage4 + percentage5;
-        
-        if(total == 100){ return true; }
-        else { return false; }
-    }
-    */
-    
-    function message(){ 
-        //Grade Range Check
-        if(check_grade_range() == false){
-            var top = "Grade Range Error";
-        }
-        else{var top = get_grade();}
-        //Percentage Range Check
-        
-        if(/*check_total_percentage() == false*/ false){
-            var mid = "<p class='display-text'>Total Percentage<br> Error</p>"
-        }
-        else{
-            if(check_percentage_range() == false){
-            var mid = "<p class='display-text'>Percentage Range <br> Error</p>"
-            }
-            else if(check_point_range() == false){
-                var mid = "<p class='display-text'>Point Range <br> Error</p>"
-            }
-            else{var mid = "<p class='display-num'>" + calc_sum().toFixed(2) + "/100" + "</p>"}
-        }
-        
-        
-        //Message generation
-        var mssg = 
-        "<h1 class='display-header'>" + top + "</h1>" + mid +
-        "<h2 class='display-header'>Good luck in your exams</h2>";
-        return mssg;
-      }
-        
-    function display_summary(){
-        document.getElementById("display").innerHTML = message();
-    } 
-
-    </script>
+    <script type="text/javascript" src="script.js"></script>
 </html>
