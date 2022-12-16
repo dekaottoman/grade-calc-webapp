@@ -1,0 +1,229 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Gemunu Libre', sans-serif;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+body{
+    background-color: #f5f6fa;
+    padding-top: 60px;
+}
+
+.topbar{
+    height: 60px;
+    width: 100%;
+    position: fixed;
+    background-color: #84817a;
+    top: 0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.topbar ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0 10px;
+}
+
+.topbar li{
+    float: left;
+}
+
+.btn-top{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background-color: #f5f6fa;
+    border: none;
+    border-radius: 7px;
+    margin: 10px 10px;
+    font-size: 15px;
+    padding: 10px 20px;
+    font-weight: 800;
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.btn-top:hover{
+    background-color: #d1ccc0;
+    color: #f5f6fa;
+}
+
+.calculator{
+    width: 300px;
+    margin: 40px auto;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+}
+
+.lbl{
+    padding: 10px;
+    text-align: center;
+    background-color: #84817a;
+    color: #f5f6fa;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+#items{
+    width: 100%;
+    border-spacing: 0;
+    border-bottom: solid;
+}
+
+#items th{
+    font-size: 17;
+    border-bottom: solid;
+}
+
+#items th,td{
+    width: 50%;
+    padding: 7px;
+    text-align: center;
+}
+
+#items td input{
+    border: none;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    padding: 10px;
+    width: 50px;
+    text-align: center;
+    border-radius: 7px;
+    background-color: #84817a;
+    color: #f5f6fa;
+}
+
+.buttons{
+    display: inline-block;
+    width: 100%;
+    margin: 5px 0;
+}
+
+.buttons button{
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background-color: #f5f6fa;
+    border: none;
+    border-radius: 7px;
+    cursor: pointer;
+}
+
+.buttons button:hover{
+    background-color: #d1ccc0;
+    color: #f5f6fa;
+}
+
+.btn{
+    width: 30%;
+    margin: 10px 10% 7px 10%;
+    float: left;
+    font-size: 17px;
+    padding: 7px;
+}
+
+.btn-calc{
+    width: 60%;
+    margin: 10px 20%;
+    font-size: 15px;
+    padding: 9px;
+    font-weight: 800;
+}
+
+.letter-lbl{
+    /*
+    background-color: #84817a;
+    width: 100%;
+    font-size: 1.5em;
+    font-weight: 600;
+    display: block;
+    text-align: center;
+    padding: 10px 0;
+    color: #f5f6fa;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-bottom: solid;
+    */
+    width: 60%;
+    margin: 0px 20% 10px 20%;
+    font-size: 15px;
+    padding: 9px 0;
+    font-weight: 800;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background-color: #f5f6fa;
+    border: none;
+    border-radius: 7px;
+    display: block;
+    text-align: center;
+}
+
+.letters{
+    display: none;
+    width: 60%;
+    margin: 0px auto 10px auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 0 0 7px 7px;
+}
+
+.letters table{
+    border-spacing: 0;
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+}
+
+.letters table th, td{
+    width: 25%;
+    padding: 5px;
+}
+
+.letters input{
+    border: none;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    padding: 7px;
+    width: 20px;
+    text-align: center;
+    border-radius: 7px;
+    background-color: #84817a;
+    color: #f5f6fa;
+}
+
+#letter-checkbox{
+    display: none;
+}
+
+.letter-lbl:hover{
+    cursor:pointer;
+    background-color: #d1ccc0;
+    color: #f5f6fa;
+}
+
+#letter-checkbox:checked ~ .letter-lbl{
+    display: block;
+    background-color: #f5f6fa;
+    color: #84817a;
+    border-bottom: solid;
+    margin: 0 20% 0 20%;
+    border-radius: 7px 7px 0 0;
+}
+
+#letter-checkbox:checked ~ .letter-lbl:hover{
+    cursor:pointer;
+    background-color: #d1ccc0;
+    color: #f5f6fa;
+}
+
+#letter-checkbox:checked ~ .letters{
+    display: block;
+    background-color: #f5f6fa;
+}
+

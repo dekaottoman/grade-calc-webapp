@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@200;600;800&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <title>Grade Calculator</title>
+</head>
+<body onload="display_table('item_table')">
+    <nav class="topbar">
+        <ul>
+            <li>
+                <button class="btn-top">How to Use?</button>
+            </li>
+            <li>
+                <a class="btn-top">GPA Calculator</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div class="calculator">
+       <h2 class="lbl">Assesment Items</h2>
+       <table id="items">
+        <thead>
+            <tr>
+                <th>Percentage</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody id="item_table">
+            <!--
+            <tr>
+                <td><input type="number" name="" id="" value="0"></td>
+                <td><input type="number" name="" id="" value="0"></td>
+            </tr>
+            <tr>
+                <td><input type="number" name="" id="" value="0"></td>
+                <td><input type="number" name="" id="" value="0"></td>
+            </tr>
+            <tr>
+                <td><input type="number" name="" id="" value="0"></td>
+                <td><input type="number" name="" id="" value="0"></td>
+            </tr>
+            -->
+        </tbody>
+       </table>
+       <div class="buttons">
+        <button class="btn" onclick="add_item('item_table')"><i class="fa-sharp fa-solid fa-plus"></i></button>
+        <button class="btn" onclick="remove_item('item_table')"><i class="fa-sharp fa-solid fa-minus"></i></button>
+        <button class="btn-calc" onclick="get_result('score_display','letter_grade')">Calculate</button>
+       </div>
+       <input type="checkbox" name="letter-checkbox" id="letter-checkbox">
+       <label for="letter-checkbox" class="letter-lbl">Letters</label>
+       
+       <div class="letters">
+            <table>
+                <tbody>
+                    <tr>
+                        <th>A</th>
+                        <th>A-</th>
+                        <th>B+</th>
+                        <th>B</th>
+                    </tr>
+                    <tr>
+                        <td><input type="number" id="L0" value="92"></td>
+                        <td><input type="number" id="L1" value="84"></td>
+                        <td><input type="number" id="L2" value="76"></td>
+                        <td><input type="number" id="L3" value="67"></td>
+                    </tr>
+                    <tr>
+                        <th>B-</th>
+                        <th>C+</th>
+                        <th>C</th>
+                        <th>C-</th>
+                    </tr>
+                    <tr>
+                        <td><input type="number" id="L4" value="59"></td>
+                        <td><input type="number" id="L5" value="51"></td>
+                        <td><input type="number" id="L6" value="42"></td>
+                        <td><input type="number" id="L7" value="34"></td>
+                    </tr>
+                    <tr>
+                        <th>D+</th>
+                        <th>D</th>
+                        <th>D-</th>
+                        <th>F</th>
+                    </tr>
+                    <tr>
+                        <td><input type="number" id="L8" value="26"></td>
+                        <td><input type="number" id="L9" value="18"></td>
+                        <td><input type="number" id="L10" value="11"></td>
+                        <td><input type="number" id="L11" disabled="disabled" value="0" style="background-color: rgba(132, 129, 122,0.7);"></td>
+                    </tr>
+                </tbody>
+            </table>
+       </div>
+       <h2 class="lbl" id="score_display" style="width: 149px; padding-left:0;padding-right:0;display: block; float: left; border-right: solid 1px #f5f6fa;">&nbsp;</h2>
+       <h2 class="lbl" id="letter_grade" style="width: 149px; padding-left:0;padding-right:0;display: block; float: left;border-left: solid 1px #f5f6fa;">&nbsp;</h2>
+    </div>
+
+</body>
+<script type="text/javascript">
+    
+    var item_count = 4;//The number of assesment items
+    
+    function create_row(index){
+        var row = "<tr><td><input type='number' id='percentage" + index +"' value='0'></td><td><input type='number' id='score" + index + "' value='0'></td></tr>";
+        return row;
+    }
+
+    function create_table(){
+        var table = "";
+        for(var i=0;i<item_count;i++){
+            table += create_row(i);
+        }
+        return table;
+    }
+
+    function display_table(display_id){
+        document.getElementById(display_id).innerHTML = create_table();
+    }
+
+    function add_item(display_id){
+        if(item_count<10){
+            item_count++;
+            display_table(display_id)
+        }
+        else{
+            alert("Cannot have more than 10 assesment items.");
+        }
+    }
+
+    function remove_item(display_id){
+        if(item_count>2){
+            item_count--;
+            display_table(display_id)
+        }
+        else{
+            alert("Cannot have less than 2 assesment items.");
+        }
+    }
+
+    function get_score(index){
+        var score_id = "score" + index;
+        var e = document.getElementById(score_id);
+        return e.value;
+    }
+
+    function get_percentage(index){
+        var percentage_id = "percentage" + index;
+        var e = document.getElementById(percentage_id);
+        return e.value;
+    }
+
+    function get_result(score_display,letter_display){
+        var t_score = 0;
+        for(var i = 0; i< item_count; i++){
+            t_score += +((get_score(i)/100)*get_percentage(i));
+        }
+        
+        document.getElementById(score_display).innerHTML = t_score.toFixed(2);
+        document.getElementById(letter_display).innerHTML = get_letter(Number(t_score))
+    }
+
+    function collect_letters(){
+        L0 = Number(document.getElementById("L0").value)
+        L1 = Number(document.getElementById("L1").value)
+        L2 = Number(document.getElementById("L2").value)
+        L3 = Number(document.getElementById("L3").value)
+        L4 = Number(document.getElementById("L4").value)
+        L5 = Number(document.getElementById("L5").value)
+        L6 = Number(document.getElementById("L6").value)
+        L7 = Number(document.getElementById("L7").value)
+        L8 = Number(document.getElementById("L8").value)
+        L9 = Number(document.getElementById("L9").value)
+        L10 = Number(document.getElementById("L10").value)
+        L11 = Number(document.getElementById("L11").value)
+        letter_value = [L0,L1,L2,L3,L4,L5,L6,L7,L8,L9,L10,L11]
+        return letter_value;
+    }
+
+    function get_letter(score){
+        var letters = ['A','A-','B+','B','B-','C+','C','C-','D+','D','D-','F'];
+        var values = collect_letters()
+        var letter = 'NaN';
+        
+        for(var i=0;i<12;i++){
+            if(score >= values[i]){
+                letter = letters[i];
+                i = 12;
+            }
+        }
+
+        return letter;
+    }
+
+</script>
+</html>
